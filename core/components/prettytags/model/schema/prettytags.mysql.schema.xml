@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="prettytags" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="prettytags"
-       version="1.1">
+<model
+        package="prettytags"
+        baseClass="xPDOObject"
+        platform="mysql"
+        defaultEngine="InnoDB"
+        phpdoc-package="prettytags"
+        version="1.1"
+>
 
-    <object class="prettyTagsItem" table="prettytags_items" extends="xPDOSimpleObject">
-        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+    <object class="prettyTagsItem" table="prettytags_tags" extends="xPDOSimpleObject">
+        <field key="tag" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="label" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="string" null="true" default=""/>
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
-        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
-            <column key="name" length="" collation="A" null="false"/>
+        <index alias="tag" name="tag" primary="false" unique="false" type="BTREE">
+            <column key="tag" length="" collation="A" null="false"/>
         </index>
         <index alias="active" name="active" primary="false" unique="false" type="BTREE">
             <column key="active" length="" collation="A" null="false"/>

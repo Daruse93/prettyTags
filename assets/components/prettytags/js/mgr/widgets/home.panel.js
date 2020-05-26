@@ -1,36 +1,32 @@
 prettyTags.panel.Home = function (config) {
     config = config || {};
     Ext.apply(config, {
-        baseCls: 'modx-formpanel',
-        layout: 'anchor',
-        /*
-         stateful: true,
-         stateId: 'prettytags-panel-home',
-         stateEvents: ['tabchange'],
-         getState:function() {return {activeTab:this.items.indexOf(this.getActiveTab())};},
-         */
-        hideMode: 'offsets',
+        cls: 'container', // Добавляем отступы
         items: [{
-            html: '<h2>' + _('prettytags') + '</h2>',
-            cls: '',
-            style: {margin: '15px 0'}
+            html: '<h2>'+_('prettytags')+'</h2>'
         }, {
             xtype: 'modx-tabs',
-            defaults: {border: false, autoHeight: true},
-            border: true,
-            hideMode: 'offsets',
             items: [{
-                title: _('prettytags_items'),
-                layout: 'anchor',
-                items: [{
-                    html: _('prettytags_intro_msg'),
+                title: _('prettytags_control_page'), // Заголовок первого таба
+                items: [
+                    {
+                        html: _('prettytags_control_page_desc'),
+                        cls: 'panel-desc',
+                    },
+                    {
+                        xtype: 'prettytags-grid-names',
+                        cls: 'container',
+                        id: 'prettytags-grid-names'
+                    }
+                ]
+            }, {
+                title: _('prettytags_instructions_page'), // Заголовок второго таба
+                items: [{ // Внутри таба ещё один HTML-блок с классом panel-desc
+                    html: _('prettytags_instructions_page_desc'),
                     cls: 'panel-desc',
-                }, {
-                    xtype: 'prettytags-grid-items',
-                    cls: 'main-wrapper',
-                }]
-            }]
-        }]
+                } ]
+            } ]
+        } ]
     });
     prettyTags.panel.Home.superclass.constructor.call(this, config);
 };

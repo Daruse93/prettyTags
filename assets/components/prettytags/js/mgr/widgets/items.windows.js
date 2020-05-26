@@ -1,107 +1,84 @@
-prettyTags.window.CreateItem = function (config) {
+// Модалка создания объекта
+prettyTags.window.create = function (config) {
     config = config || {};
-    if (!config.id) {
-        config.id = 'prettytags-item-window-create';
-    }
     Ext.applyIf(config, {
-        title: _('prettytags_item_create'),
-        width: 550,
-        autoHeight: true,
+        title: _('prettytags_add_tag'),
+        fields: [
+            {
+                xtype: 'textfield',
+                name: 'label',
+                fieldLabel: _('prettytags_field_label'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                name: 'tag',
+                fieldLabel: _('prettytags_field_tag'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'textarea',
+                name: 'description',
+                fieldLabel: _('prettytags_field_description'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'xcheckbox',
+                name: 'active',
+                fieldLabel: _('prettytags_field_active'),
+                boxLabel: 'Да'
+            }
+        ],
         url: prettyTags.config.connector_url,
         action: 'mgr/item/create',
-        fields: this.getFields(config),
-        keys: [{
-            key: Ext.EventObject.ENTER, shift: true, fn: function () {
-                this.submit()
-            }, scope: this
-        }]
     });
-    prettyTags.window.CreateItem.superclass.constructor.call(this, config);
+    prettyTags.window.create.superclass.constructor.call(this, config); // Магия
 };
-Ext.extend(prettyTags.window.CreateItem, MODx.Window, {
-
-    getFields: function (config) {
-        return [{
-            xtype: 'textfield',
-            fieldLabel: _('prettytags_item_name'),
-            name: 'name',
-            id: config.id + '-name',
-            anchor: '99%',
-            allowBlank: false,
-        }, {
-            xtype: 'textarea',
-            fieldLabel: _('prettytags_item_description'),
-            name: 'description',
-            id: config.id + '-description',
-            height: 150,
-            anchor: '99%'
-        }, {
-            xtype: 'xcheckbox',
-            boxLabel: _('prettytags_item_active'),
-            name: 'active',
-            id: config.id + '-active',
-            checked: true,
-        }];
-    },
-
-    loadDropZones: function () {
-    }
-
-});
-Ext.reg('prettytags-item-window-create', prettyTags.window.CreateItem);
+Ext.extend(prettyTags.window.create, MODx.Window); // Расширяем MODX.Window
+Ext.reg('prettyTags-window-create', prettyTags.window.create); // Регистрируем новый xtype
 
 
-prettyTags.window.UpdateItem = function (config) {
+// Модалка обновления объекта
+prettyTags.window.update = function (config) {
     config = config || {};
-    if (!config.id) {
-        config.id = 'prettytags-item-window-update';
-    }
     Ext.applyIf(config, {
-        title: _('prettytags_item_update'),
-        width: 550,
-        autoHeight: true,
+        title: _('prettytags_update_tag'),
+        fields: [
+            {
+                xtype: 'textfield',
+                name: 'label',
+                fieldLabel: _('prettytags_field_label'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'textfield',
+                name: 'tag',
+                fieldLabel: _('prettytags_field_tag'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'textarea',
+                name: 'description',
+                fieldLabel: _('prettytags_field_description'),
+                anchor: '100%'
+            },
+            {
+                xtype: 'xcheckbox',
+                name: 'active',
+                fieldLabel: _('prettytags_field_active'),
+                boxLabel: 'Да'
+            },
+            {
+                xtype: 'hidden',
+                name: 'id',
+                fieldLabel: 'Id',
+                anchor: '100%'
+            },
+        ],
         url: prettyTags.config.connector_url,
         action: 'mgr/item/update',
-        fields: this.getFields(config),
-        keys: [{
-            key: Ext.EventObject.ENTER, shift: true, fn: function () {
-                this.submit()
-            }, scope: this
-        }]
     });
-    prettyTags.window.UpdateItem.superclass.constructor.call(this, config);
+    prettyTags.window.update.superclass.constructor.call(this, config); // Магия
 };
-Ext.extend(prettyTags.window.UpdateItem, MODx.Window, {
-
-    getFields: function (config) {
-        return [{
-            xtype: 'hidden',
-            name: 'id',
-            id: config.id + '-id',
-        }, {
-            xtype: 'textfield',
-            fieldLabel: _('prettytags_item_name'),
-            name: 'name',
-            id: config.id + '-name',
-            anchor: '99%',
-            allowBlank: false,
-        }, {
-            xtype: 'textarea',
-            fieldLabel: _('prettytags_item_description'),
-            name: 'description',
-            id: config.id + '-description',
-            anchor: '99%',
-            height: 150,
-        }, {
-            xtype: 'xcheckbox',
-            boxLabel: _('prettytags_item_active'),
-            name: 'active',
-            id: config.id + '-active',
-        }];
-    },
-
-    loadDropZones: function () {
-    }
-
-});
-Ext.reg('prettytags-item-window-update', prettyTags.window.UpdateItem);
+Ext.extend(prettyTags.window.update, MODx.Window); // Расширяем MODX.Window
+Ext.reg('prettyTags-window-update', prettyTags.window.update); // Регистрируем новый xtype

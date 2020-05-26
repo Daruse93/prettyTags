@@ -11,7 +11,7 @@ if (!defined('MODX_CORE_PATH')) {
 return [
     'name' => 'prettyTags',
     'name_lower' => 'prettytags',
-    'version' => '2.0.0',
+    'version' => '1.0.0',
     'release' => 'pl',
     // Install package to site right after build
     'install' => true,

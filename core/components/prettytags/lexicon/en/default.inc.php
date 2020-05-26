@@ -1,7 +1,7 @@
 <?php
 include_once 'setting.inc.php';
 
-$_lang['prettytags'] = 'prettyTags';
+$_lang['prettytags'] = 'Pretty Tags';
 $_lang['prettytags_menu_desc'] = 'A sample Extra to develop from.';
 $_lang['prettytags_intro_msg'] = 'You can select multiple items by holding Shift or Ctrl button.';
 
