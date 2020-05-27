@@ -4,17 +4,17 @@ prettyTags.grid.Names = function (config) {
     Ext.apply(config, {
         columns: [
             {dataIndex: 'id', width: 150, header: 'Id'},
-            {dataIndex: 'label', width: 250, header: _('prettytags_field_label')},
-            {dataIndex: 'tag', width: 250, header: _('prettytags_field_tag')},
+            {dataIndex: 'name', width: 250, header: _('prettytags_field_name')},
+            {dataIndex: 'alias', width: 250, header: _('prettytags_field_alias')},
             {dataIndex: 'description', width: 400, header: _('prettytags_field_description')},
             {
                 dataIndex: 'active',
                 width: 100,
                 header: _('prettytags_field_active'),
                 renderer: function(value) {
-                    if (value) { // Если значение поля == true
+                    if (value) {
                         return '<span class="green">Да</span>';
-                    } else { // Иначе
+                    } else {
                         return '<span class="red">Нет</span>';
                     }
                 }
@@ -27,7 +27,7 @@ prettyTags.grid.Names = function (config) {
         },
         url: prettyTags.config.connector_url,
         action: 'mgr/item/getlist',
-        fields: ['id','label', 'tag', 'description', 'active'],
+        fields: ['id','name', 'alias', 'description', 'active'],
         paging: true,
         pageSize: 10, // количество записей на странице
         listeners: {
@@ -45,8 +45,8 @@ prettyTags.grid.Names = function (config) {
                 });
                 w.setValues({
                     id: row.data.id,
-                    label: row.data.label,
-                    tag: row.data.tag,
+                    name: row.data.name,
+                    alias: row.data.alias,
                     description: row.data.description,
                     active: row.data.active,
                 });
@@ -82,7 +82,7 @@ prettyTags.grid.Names = function (config) {
                 handler: function(){
                     MODx.msg.confirm({
                         title: _('prettytags_remove_tag'),
-                        text: _('prettytags_remove_tag_confirm') + '<strong>' + row.data.label + '</strong>?',
+                        text: _('prettytags_remove_tag_confirm') + '<strong>' + row.data.name + '</strong>?',
                         url: prettyTags.config.connector_url,
                         params: {
                             action: 'mgr/item/remove',

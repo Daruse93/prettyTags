@@ -4,9 +4,9 @@ include_once 'setting.inc.php';
 $_lang['prettytags'] = 'Pretty Tags';
 $_lang['prettytags_menu_desc'] = 'Управлекние тегами';
 
-$_lang["prettytags_field_label"] = "Метка";
-$_lang["prettytags_field_tag"] = "Тег";
-$_lang["prettytags_field_description"] = "Описание для тега";
+$_lang["prettytags_field_name"] = "Название";
+$_lang["prettytags_field_alias"] = "Алиас";
+$_lang["prettytags_field_description"] = "Описание";
 $_lang["prettytags_field_active"] = "Статус";
 $_lang["prettytags_field_yes"] = "Да";
 

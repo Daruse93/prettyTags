@@ -6,14 +6,14 @@ prettyTags.window.create = function (config) {
         fields: [
             {
                 xtype: 'textfield',
-                name: 'label',
-                fieldLabel: _('prettytags_field_label'),
+                name: 'name',
+                fieldLabel: _('prettytags_field_name'),
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                name: 'tag',
-                fieldLabel: _('prettytags_field_tag'),
+                name: 'alias',
+                fieldLabel: _('prettytags_field_alias'),
                 anchor: '100%'
             },
             {
@@ -46,14 +46,14 @@ prettyTags.window.update = function (config) {
         fields: [
             {
                 xtype: 'textfield',
-                name: 'label',
-                fieldLabel: _('prettytags_field_label'),
+                name: 'name',
+                fieldLabel: _('prettytags_field_name'),
                 anchor: '100%'
             },
             {
                 xtype: 'textfield',
-                name: 'tag',
-                fieldLabel: _('prettytags_field_tag'),
+                name: 'alias',
+                fieldLabel: _('prettytags_field_alias'),
                 anchor: '100%'
             },
             {

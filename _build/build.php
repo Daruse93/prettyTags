@@ -315,7 +315,7 @@ class prettyTagsPackage
             $plugin = $this->modx->newObject('modPlugin');
             $plugin->fromArray(array_merge([
                 'name' => $name,
-                'category' => 0,
+                'category' => $this->category->get('category'),
                 'description' => @$data['description'],
                 'plugincode' => $this::_getContent($this->config['core'] . 'elements/plugins/' . $data['file'] . '.php'),
                 'static' => !empty($this->config['static']['plugins']),

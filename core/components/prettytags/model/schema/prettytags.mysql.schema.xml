@@ -9,13 +9,13 @@
 >
 
     <object class="prettyTagsItem" table="prettytags_tags" extends="xPDOSimpleObject">
-        <field key="tag" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
-        <field key="label" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="alias" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="string" null="true" default=""/>
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
 
-        <index alias="tag" name="tag" primary="false" unique="false" type="BTREE">
-            <column key="tag" length="" collation="A" null="false"/>
+        <index alias="alias" name="alias" primary="false" unique="false" type="BTREE">
+            <column key="alias" length="" collation="A" null="false"/>
         </index>
         <index alias="active" name="active" primary="false" unique="false" type="BTREE">
             <column key="active" length="" collation="A" null="false"/>

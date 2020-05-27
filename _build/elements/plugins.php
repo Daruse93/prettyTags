@@ -5,7 +5,7 @@ return [
         'file' => 'prettytags',
         'description' => '',
         'events' => [
-            'OnManagerPageInit' => [],
+            'OnTVInputRenderList' => [],
         ],
     ],
 ];
