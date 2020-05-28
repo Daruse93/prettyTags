@@ -6,6 +6,7 @@ return [
         'description' => '',
         'events' => [
             'OnTVInputRenderList' => [],
+            'OnPageNotFound' => [],
         ],
     ],
 ];
