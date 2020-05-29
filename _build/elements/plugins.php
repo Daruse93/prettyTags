@@ -7,6 +7,7 @@ return [
         'events' => [
             'OnTVInputRenderList' => [],
             'OnPageNotFound' => [],
+            'OnLoadWebDocument' => [],
         ],
     ],
 ];
