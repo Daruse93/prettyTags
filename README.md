@@ -1,34 +1,49 @@
+# Pretty Tags for Modx Revolution
+
+
 ## Quick start
+* Install package
+* Add resource for tags and set it's id in system setting `prettytags_resource_id`
+* Create TV for tags with type `prettytags` for resource pages
+* Create tags in Pretty Tags admin page
 
-* Install MODX Revolution
+### Tags page
+Tags page catch tags in format `https://yoursite/your-page-tags-url/some-tag`
 
-* Upload this package into the `Extras` directory in the root of site
-
-* You need to rename it to `anyOtherName` your package, so enter into SSH console and run
+You can set next placeholder in template:
 ```
-php ~/www/Extras/prettyTags/rename_it.php anyOtherName
+[[+pretty_tags_id]]     
+[[+pretty_tags_alias]]  
+[[+pretty_tags_name]]   
+[[+pretty_tags_description]]
 ```
-*path on your site may differs*
 
-* Then install it on dev gsite
+For get resource with tags you can use pdoTools or another, like this:
 ```
-php ~/www/Extras/anyOtherName/_build/build.php
-``` 
+[[!pdoResources?
+    &parents=`3`
+    &includeTVs=`tags`
+    &tpl=`@INLINE <p>[[+pagetitle]]</p>`
+    &where=`{ "tags:LIKE":"%[[+pretty_tags_id]]%" }`
+]]
+```
 
-## Settings
-
-See `_build/config.inc.php` for editable package options.
-
-All resolvers and elements are in `_build` path. All files that begins not from `.` or `_` will be added automatically. 
-
-If you will add a new type of element, you will need to add the method with that name into `build.php` script as well.
-
-## Build and download
-
-You can build package at any time by opening `http://dev.site.com/Extras/anyOtherName/_build/build.php`
-
-If you want to download built package - just add `?download=1` to the address.
-
-## Example deploy settings
-
-[![](https://file.modx.pro/files/3/a/b/3ab2753b9e8b6c09a4ca0da819db37b6s.jpg)](https://file.modx.pro/files/3/a/b/3ab2753b9e8b6c09a4ca0da819db37b6.png) [![](https://file.modx.pro/files/c/1/a/c1afbb8988ab358a0b400cdcdb0391d4s.jpg)](https://file.modx.pro/files/c/1/a/c1afbb8988ab358a0b400cdcdb0391d4.png)
+### One resource
+For getting resource's tags, you need use snippet `prettyTagsResource`
+Like this:
+```
+[[!prettyTagsResource?
+    &limit=`0`
+    &input=`[[*tags]]`
+]]
+```
+### Tag Cloud
+For tag cloud you need use snippet `prettyTagsCloud`, like this:
+```
+[[!prettyTagsCloud?
+    &tpl=`tpl.prettyTags.item`
+    &sortby=`name`
+    &sortdir=`ASC`
+    &limit=`10`
+]]
+```
