@@ -19,13 +19,7 @@ prettyTags.panel.Home = function (config) {
                         id: 'prettytags-grid-names'
                     }
                 ]
-            }, {
-                title: _('prettytags_instructions_page'), // Заголовок второго таба
-                items: [{ // Внутри таба ещё один HTML-блок с классом panel-desc
-                    html: _('prettytags_instructions_page_desc'),
-                    cls: 'panel-desc',
-                } ]
-            } ]
+            }]
         } ]
     });
     prettyTags.panel.Home.superclass.constructor.call(this, config);
