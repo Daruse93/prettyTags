@@ -1,4 +1,1 @@
-<p>
-    <strong>[[+name]]</strong> -
-    <small>[[+description]]</small>
-</p>
+<a class="badge badge-primary" href="[[+url]]">[[+name]]</a>

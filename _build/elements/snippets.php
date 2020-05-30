@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'prettyTags' => [
-        'file' => 'prettytags',
+    'prettyTagsCloud' => [
+        'file' => 'prettyTagsCloud',
         'description' => 'prettyTags snippet to list items',
         'properties' => [
             'tpl' => [

@@ -7,7 +7,13 @@ if (!$prettyTags) {
     return 'Could not load prettyTags class!';
 }
 
-// Do your snippet code here. This demo grabs 5 items from our custom table.
+$pageTagsId = $modx->getOption('prettytags_resource_id');
+if($pageTagsId){
+    $pageTagsResource = $modx->getObject('modResource', $pageTagsId);
+    $pageTagsUrl = $pageTagsResource->get('uri');
+}
+
+// scriptProperties
 $tpl = $modx->getOption('tpl', $scriptProperties, 'Item');
 $sortby = $modx->getOption('sortby', $scriptProperties, 'name');
 $sortdir = $modx->getOption('sortbir', $scriptProperties, 'ASC');
@@ -26,6 +32,10 @@ $items = $modx->getIterator('prettyTagsItem', $c);
 $list = [];
 /** @var prettyTagsItem $item */
 foreach ($items as $item) {
+    if($pageTagsUrl && $item->get('alias')){
+        $item->set('url', $pageTagsUrl.$item->get('alias'));
+    }
+
     $list[] = $modx->getChunk($tpl, $item->toArray());
 }
 

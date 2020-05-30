@@ -37,11 +37,15 @@
     {/literal}
     // ]]>
 </script>
-<ul class="modx-tag-list" id="tv-{$tv->id}-tag-list">
-    {foreach from=$opts item=item key=k name=cbs}
-        <li class="modx-tag-opt{if $item.checked} modx-tag-checked{/if}" title="{$k}">{$item.name}</li>
-    {/foreach}
-</ul>
+{if count($opts)}
+    <ul class="modx-tag-list" id="tv-{$tv->id}-tag-list">
+        {foreach from=$opts item=item key=k name=cbs}
+             <li class="modx-tag-opt{if $item.checked} modx-tag-checked{/if}" title="{$k}">{$item.name}</li>
+        {/foreach}
+    </ul>
+{else}
+    <div>{$modx->lexicon('prettytags_no_tags')}</div>
+{/if}
 <script type="text/javascript">
     // <![CDATA[
     {literal}

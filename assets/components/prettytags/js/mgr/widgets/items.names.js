@@ -77,27 +77,53 @@ prettyTags.grid.Names = function (config) {
         getMenu: function(grid, rowIndex) {
             var m = [];
             var row = grid.getStore().getAt(rowIndex);
-            m.push({
-                text: _('prettytags_remove_tag'),
-                handler: function(){
-                    MODx.msg.confirm({
-                        title: _('prettytags_remove_tag'),
-                        text: _('prettytags_remove_tag_confirm') + '<strong>' + row.data.name + '</strong>?',
-                        url: prettyTags.config.connector_url,
-                        params: {
-                            action: 'mgr/item/remove',
-                            id: row.data.id,
-                        },
-                        listeners: {
-                            success: {
-                                fn: function () {
-                                    this.refresh();
-                                }, scope: this
+            m.push(
+                {
+                    text: _('prettytags_remove_tag'),
+                    handler: function(){
+                        MODx.msg.confirm({
+                            title: _('prettytags_remove_tag'),
+                            text: _('prettytags_remove_tag_confirm') + '<strong>' + row.data.name + '</strong>?',
+                            url: prettyTags.config.connector_url,
+                            params: {
+                                action: 'mgr/item/remove',
+                                id: row.data.id,
+                            },
+                            listeners: {
+                                success: {
+                                    fn: function () {
+                                        this.refresh();
+                                    }, scope: this
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                },
+                {
+                    text: _('prettytags_update_tag'),
+                    handler: function(){
+                        var row = grid.store.getAt(rowIndex);
+                        var w = MODx.load({
+                            xtype: 'prettyTags-window-update',
+                            listeners: {
+                                success: {
+                                    fn: function () {
+                                        this.refresh();
+                                    }, scope: this
+                                }
+                            }
+                        });
+                        w.setValues({
+                            id: row.data.id,
+                            name: row.data.name,
+                            alias: row.data.alias,
+                            description: row.data.description,
+                            active: row.data.active,
+                        });
+                        w.show();
+                    }
                 }
-            });
+            );
             return m;
         }
     });

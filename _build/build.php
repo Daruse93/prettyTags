@@ -415,6 +415,7 @@ class prettyTagsPackage
             $objects[$name]->fromArray(array_merge([
                 'id' => 0,
                 'name' => $name,
+                'category' => $this->category->get('category'),
                 'description' => @$data['description'],
                 'snippet' => $this::_getContent($this->config['core'] . 'elements/chunks/' . $data['file'] . '.tpl'),
                 'static' => !empty($this->config['static']['chunks']),

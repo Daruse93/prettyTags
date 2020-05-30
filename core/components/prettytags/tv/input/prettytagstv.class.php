@@ -10,7 +10,10 @@ if(!class_exists('PrettyTagsTvInputRender')) {
         public function process($value,array $params = array()) {
             //TODO: хз, должен был по идее и так пакет видеть, если знаете, пишите
             $this->modx->addPackage('prettytags', $this->modx->getOption('core_path') . 'components/prettytags/model/');
-            $prettyTags = $this->modx->getCollection('prettyTagsItem');
+            $where = [
+                'active' => 1,
+            ];
+            $prettyTags = $this->modx->getCollection('prettyTagsItem', $where);
 
             $values = explode(",", $value);
 

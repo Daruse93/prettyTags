@@ -14,7 +14,7 @@ $_lang["prettytags_add_tag"] = "Добавить";
 $_lang["prettytags_update_tag"] = "Обновить";
 $_lang["prettytags_remove_tag"] = "Удалить";
 $_lang["prettytags_remove_tag_confirm"] = "Вы действительно хотите удалить тэг: ";
-
+$_lang["prettytags_no_tags"] = "Нет тегов, добавьте их на странице Pretty Tags";
 
 $_lang["prettytags_control_page"] = "Управление тегами";
 $_lang["prettytags_control_page_desc"] = "Вы можете здесь добавить, удалить или отредактировать метки";
