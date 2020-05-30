@@ -44,7 +44,7 @@
         {/foreach}
     </ul>
 {else}
-    <div>{$modx->lexicon('prettytags_no_tags')}</div>
+    <div>{$noTagsText}</div>
 {/if}
 <script type="text/javascript">
     // <![CDATA[

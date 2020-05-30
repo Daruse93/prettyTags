@@ -10,6 +10,8 @@ if(!class_exists('PrettyTagsTvInputRender')) {
         public function process($value,array $params = array()) {
             //TODO: хз, должен был по идее и так пакет видеть, если знаете, пишите
             $this->modx->addPackage('prettytags', $this->modx->getOption('core_path') . 'components/prettytags/model/');
+            $this->modx->lexicon->load('prettytags:default');
+
             $where = [
                 'active' => 1,
             ];
@@ -23,7 +25,11 @@ if(!class_exists('PrettyTagsTvInputRender')) {
                 $tags[$tag->id]['checked'] = in_array($tag->id, $values);
             }
 
+
+            $noTagsText = $this->modx->lexicon('prettytags_no_tags');
+
             $this->setPlaceholder('opts', $tags);
+            $this->setPlaceholder('noTagsText', $noTagsText);
         }
     }
 }
