@@ -10,7 +10,7 @@ if (!$prettyTags) {
 $pageTagsId = $modx->getOption('prettytags_resource_id');
 if($pageTagsId){
     $pageTagsResource = $modx->getObject('modResource', $pageTagsId);
-    $pageTagsUrl = $pageTagsResource->get('uri');
+    $pageTagsUrl = str_replace('//', '/', $pageTagsResource->get('uri').'/');
 }
 
 // scriptProperties
