@@ -41,13 +41,45 @@ class PrettyTagsRouter
     }
 
     /**
+     * Is isset tag in tag list
+     *
+     * @param $tag
+     * @return bool
+     * @throws Exception
+     */
+    protected function isIssetTag($tag)
+    {
+        $prettyTags = $this->modx->getService('prettyTags', 'prettyTags', MODX_CORE_PATH . 'components/prettytags/model/');
+
+        if (!$prettyTags) {
+            throw new Exception('Could not load prettyTags class!');
+        }
+
+        $q = $this->modx->newQuery('prettyTagsItem');
+
+        $q->where([
+            'active' => 1,
+            'alias' => $tag,
+        ]);
+        $q->limit(1);
+
+        $q->prepare();
+        $q->stmt->execute();
+        $res = $q->stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return !!count($res);
+    }
+
+    /**
      * Dispatch request
      *
      * @return null
+     * @throws Exception
      */
     public function dispatch()
     {
         $dispatcher = $this->getDispatcher();
+        $isNeedCheckTag = $this->modx->getOption('prettytags_only_isset_tag');
 
         $params = $dispatcher->dispatch($this->getMethod(), $this->getUri());
 
@@ -57,7 +89,15 @@ class PrettyTagsRouter
                 return $this->error();
 
             case FastRoute\Dispatcher::FOUND:
-                return $this->handle($params[1], $params[2]);
+                if (!$isNeedCheckTag) {
+                    return $this->handle($params[1], $params[2]);
+                }
+
+                if ($this->isIssetTag($params[2]['tag'])) {
+                    return $this->handle($params[1], $params[2]);
+                } else {
+                    return $this->error();
+                }
         }
 
         return null;
@@ -132,7 +172,7 @@ class PrettyTagsRouter
 
         if($resourceId){
             $resourceAlias = $this->modx->getObject('modResource', $resourceId)->get('alias');
-            $router->addRoute('GET', '/'.$resourceAlias.'/{tag}', $resourceId);
+            $router->addRoute('GET', '/'.$resourceAlias.'/{tag}[/]', $resourceId);
         }
     }
 
