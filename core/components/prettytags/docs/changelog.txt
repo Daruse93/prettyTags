@@ -7,4 +7,9 @@ Changelog for prettyTags.
 1.0.1-pl
 ==============
 - fix for correct work with tags page with '/' in the end
-- add system setting for check isset tag, if on and tag not found - redirect to 404 page
+- add system setting for check isset tag, if on and tag not found - redirect to 404 page..
+
+1.0.2-pl
+==============
+- sort by name in resources for tags
+- auto alias for creating tag with translit and replaced spaces

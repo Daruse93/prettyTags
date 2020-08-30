@@ -12,10 +12,14 @@ if(!class_exists('PrettyTagsTvInputRender')) {
             $this->modx->addPackage('prettytags', $this->modx->getOption('core_path') . 'components/prettytags/model/');
             $this->modx->lexicon->load('prettytags:default');
 
-            $where = [
+            $query = $this->modx->newQuery('prettyTagsItem');
+
+            $query->sortby('name','ASC');
+            $query->where(array(
                 'active' => 1,
-            ];
-            $prettyTags = $this->modx->getCollection('prettyTagsItem', $where);
+            ));
+
+            $prettyTags = $this->modx->getCollection('prettyTagsItem', $query);
 
             $values = explode(",", $value);
 
