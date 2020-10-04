@@ -13,3 +13,8 @@ Changelog for prettyTags.
 ==============
 - sort by name in resources for tags
 - auto alias for creating tag with translit and replaced spaces
+
+1.0.3-pl
+==============
+- add [[+count]] param for prettyTagsCloud tpl
+- add params for prettyTagsCloud snippet: tvId (required), includeUnpublished, includeDeleted

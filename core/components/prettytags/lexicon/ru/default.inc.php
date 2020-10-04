@@ -1,5 +1,4 @@
 <?php
-include_once 'setting.inc.php';
 
 $_lang['prettytags'] = 'Pretty Tags';
 $_lang['prettytags_menu_desc'] = 'Управлекние тегами';

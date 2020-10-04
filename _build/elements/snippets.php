@@ -5,6 +5,10 @@ return [
         'file' => 'prettyTagsCloud',
         'description' => 'prettyTags snippet to list items',
         'properties' => [
+            'tvId' => [
+                'type' => 'textfield',
+                'value' => '',
+            ],
             'tpl' => [
                 'type' => 'textfield',
                 'value' => 'tpl.prettyTags.item',
@@ -32,6 +36,14 @@ return [
             'toPlaceholder' => [
                 'type' => 'combo-boolean',
                 'value' => false,
+            ],
+            'includeUnpublished' => [
+                'type' => 'textfield',
+                'value' => '0',
+            ],
+            'includeDeleted' => [
+                'type' => 'textfield',
+                'value' => '0',
             ],
         ],
     ],

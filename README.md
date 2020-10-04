@@ -38,13 +38,33 @@ Like this:
     &input=`[[*tags]]`
 ]]
 ```
+##### Tpl props:
+```
+[[+id]] - id tag
+[[+name]] - name tag
+[[+alias]] - alias tag
+[[+description]] - description tag
+[[+status]] - status included tag (0 or 1)
+[[+url]] - full url to page tags (Need add id tag page in system settings!)
+```
 ### Tag Cloud
 For tag cloud you need use snippet `prettyTagsCloud`, like this:
 ```
 [[!prettyTagsCloud?
+    &tvId=`1`
     &tpl=`tpl.prettyTags.item`
     &sortby=`name`
     &sortdir=`ASC`
     &limit=`10`
 ]]
+```
+##### Tpl props:
+```
+[[+id]] - id tag
+[[+name]] - name tag
+[[+alias]] - alias tag
+[[+description]] - description tag
+[[+status]] - status included tag (0 or 1)
+[[+url]] - full url to page tags (Need add id tag page in system settings!)
+[[+count]] - count uses in resources
 ```
