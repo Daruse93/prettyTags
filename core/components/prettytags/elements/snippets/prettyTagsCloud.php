@@ -17,7 +17,7 @@ if($pageTagsId){
 $tpl = $modx->getOption('tpl', $scriptProperties, 'Item');
 $sortby = $modx->getOption('sortby', $scriptProperties, 'name');
 $sortdir = $modx->getOption('sortdir', $scriptProperties, 'ASC');
-$limit = $modx->getOption('limit', $scriptProperties, 5);
+$limit = $modx->getOption('limit', $scriptProperties, 10);
 $outputSeparator = $modx->getOption('outputSeparator', $scriptProperties, "\n");
 $toPlaceholder = $modx->getOption('toPlaceholder', $scriptProperties, false);
 $tvId = $modx->getOption('tvId', $scriptProperties, '');
@@ -46,12 +46,12 @@ if (!$modx->getOption('includeUnpublished',$scriptProperties,false)) {
     $c->where(array('modResource`.`published' => 1));
 }
 
-$tags = $modx->getCollection('modTemplateVarResource',$c);
+$resourceTags = $modx->getCollection('modTemplateVarResource',$c);
 
 /* parse TV values */
-$tagIdList = array();
+$tagIdList = [];
 $tvDelimiter = ',';
-foreach ($tags as $tag) {
+foreach ($resourceTags as $tag) {
     $v = $tag->get('value');
     $vs = explode($tvDelimiter,$v);
     foreach ($vs as $key) {
@@ -70,21 +70,22 @@ foreach ($tags as $tag) {
 /* add props */
 $tagList = [];
 
-foreach ($tagIdList as $id => $count) {
-    $tag = $modx->getObject('prettyTagsItem', array(
-        'id' => $id
-    ));
+$tags = $modx->getCollection('prettyTagsItem', [
+    'id:IN' => array_keys($tagIdList)
+]);
 
+foreach($tags as $tag){
     $url = '';
+    $id = $tag->get('id');
     $alias = $tag->get('alias');
 
-    if ($pageTagsUrl && $alias) {
+    if (!empty($pageTagsUrl) && $alias) {
         $url = $pageTagsUrl.$alias;
     }
 
     $tagArray = array(
         'id' => $id,
-        'count' => $count,
+        'count' => $tagIdList[$id],
         'name' => $tag->get('name'),
         'alias' => $alias,
         'description' => $tag->get('description'),

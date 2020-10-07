@@ -18,3 +18,7 @@ Changelog for prettyTags.
 ==============
 - add [[+count]] param for prettyTagsCloud tpl
 - add params for prettyTagsCloud snippet: tvId (required), includeUnpublished, includeDeleted
+
+1.0.4-pl
+==============
+- fix prettyTagsCloud snippet for deleted tags
